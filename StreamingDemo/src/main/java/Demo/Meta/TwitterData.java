@@ -6,6 +6,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TwitterData {
 	
 	private String created_at;
+	private Integer count;
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public String getCreated_at() {
 		return created_at;
 	}
@@ -17,13 +24,7 @@ public class TwitterData {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getId_str() {
-		return id_str;
-	}
-	public void setId_str(String id_str) {
-		this.id_str = id_str;
-	}
+	}	
 	public String getText() {
 		return text;
 	}
@@ -176,6 +177,12 @@ public class TwitterData {
 	}
 	private String id;
 	private String id_str;
+	public String getId_str() {
+		return id_str;
+	}
+	public void setId_str(String id_str) {
+		this.id_str = id_str;
+	}
 	private String text;
 	private String display_text_range;
 	private String source;

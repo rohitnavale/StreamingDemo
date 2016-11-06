@@ -1,5 +1,7 @@
 package Demo.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,39 @@ public class TwitterController {
 		return twitterServiceImpl.getOneById(id);
 	}
 	
-	@RequestMapping(value = "/getUserByData", method = RequestMethod.GET)
-	public @ResponseBody String getUserByData(@RequestParam("TwitId") String TwitId) throws JsonProcessingException {
-		return twitterServiceImpl.getUserBydata(TwitId);
+	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	public @ResponseBody String getAll() throws JsonProcessingException {
+		return twitterServiceImpl.getAll();
 	}
+	
+	@RequestMapping(value = "/getUserByData", method = RequestMethod.GET)
+	public @ResponseBody String getUserByData(@RequestParam("TwitId") String twitId) throws JsonProcessingException {
+		return twitterServiceImpl.getUserBydata(twitId);
+	}
+	
+	/*@RequestMapping(value = "/getTwitcount", method = RequestMethod.GET)
+	public @ResponseBody String getTwitcount(@RequestParam("UserId") String userId)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getTwitcount(userId);
+	}
+	*/
+	
+	/*@RequestMapping(value = "/getTwitcount", method = RequestMethod.GET)
+	public @ResponseBody Integer getTwitcount(@RequestParam("Id_str") String id_str)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getTwitcount(id_str);
+	}*/
+	
+	@RequestMapping(value = "/getTwitcount", method = RequestMethod.GET)
+	public @ResponseBody String getTwitcount(@RequestParam("Id_str") String id_str)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getTwitcount(id_str);
+	}
+	
+	@RequestMapping(value = "/getDatabyidstr", method = RequestMethod.GET)
+	public @ResponseBody String getDatabyidstr(@RequestParam("UserId") String userId)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getdatabyidstr(userId);
+	}
+	
 }
