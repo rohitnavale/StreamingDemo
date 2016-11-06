@@ -3,6 +3,13 @@ package Demo.Meta;
 public class User {
 
 	private String id;
+	private String id_str;
+	public String getId_str() {
+		return id_str;
+	}
+	public void setId_str(String id_str) {
+		this.id_str = id_str;
+	}
 	public String getId() {
 		return id;
 	}

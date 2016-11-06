@@ -49,10 +49,28 @@ public class TwitterController {
 		return twitterServiceImpl.getTwitcount(id_str);
 	}*/
 	
-	@RequestMapping(value = "/getTwitcount", method = RequestMethod.GET)
+	@RequestMapping(value = "/getCountByTwit", method = RequestMethod.GET)
 	public @ResponseBody String getTwitcount(@RequestParam("Id_str") String id_str)
 			throws JsonProcessingException {	
 		return twitterServiceImpl.getTwitcount(id_str);
+	}
+	
+	@RequestMapping(value = "/getCountByUser", method = RequestMethod.GET)
+	public @ResponseBody String getUserCount(@RequestParam("Id_str") String id_str)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getUserCount(id_str);
+	}
+	
+	@RequestMapping(value = "/getCountByLocation", method = RequestMethod.GET)
+	public @ResponseBody String getLocationCount(@RequestParam("location") String location)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getLocationCount(location);
+	}
+	
+	@RequestMapping(value = "/getCounter", method = RequestMethod.GET)
+	public @ResponseBody String getCounter(@RequestParam("Id_str") String id_str)
+			throws JsonProcessingException {	
+		return twitterServiceImpl.getCounter(id_str);
 	}
 	
 	@RequestMapping(value = "/getDatabyidstr", method = RequestMethod.GET)

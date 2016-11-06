@@ -2,8 +2,9 @@ package Demo.Meta;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="TwitCount")
-public class TwitCount {
+@Document(collection="LocationCount")
+public class LocationCount {
+
 	private String id;
 	private String name;
 	private Integer count;
@@ -25,5 +26,4 @@ public class TwitCount {
 	public void setCount(Integer count) {
 		this.count = count;
 	}
-
 }
