@@ -67,11 +67,11 @@ public class TwitterController {
 		return twitterServiceImpl.getLocationCount(location);
 	}
 	
-	@RequestMapping(value = "/getCounter", method = RequestMethod.GET)
-	public @ResponseBody String getCounter(@RequestParam("Id_str") String id_str)
+	/*@RequestMapping(value = "/getCounter", method = RequestMethod.GET)
+	public @ResponseBody String getCounter()
 			throws JsonProcessingException {	
-		return twitterServiceImpl.getCounter(id_str);
-	}
+		return twitterServiceImpl.getCounter();
+	}*/
 	
 	@RequestMapping(value = "/getDatabyidstr", method = RequestMethod.GET)
 	public @ResponseBody String getDatabyidstr(@RequestParam("UserId") String userId)

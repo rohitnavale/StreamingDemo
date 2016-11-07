@@ -19,7 +19,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import Demo.Dao.ILocationCountDao;
+import Demo.Dao.ITwitCountDao;
 import Demo.Dao.ITwitterDao;
+import Demo.Dao.IUserCountDao;
+import Demo.Meta.LocationCount;
 import Demo.Meta.TwitCount;
 import Demo.Meta.TwitterData;
 import Demo.Meta.User;
@@ -30,6 +34,12 @@ public class TwitterServiceImpl{
 
 	@Autowired 
 	ITwitterDao iTwitterDao;
+	@Autowired
+	IUserCountDao iUsercountDao;
+	@Autowired
+	ILocationCountDao iLocationCountDao;
+	@Autowired
+	ITwitCountDao iTwitCountDao;
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
@@ -149,7 +159,7 @@ public String getTwitcount(String id_str) throws JsonProcessingException {
 		AggregationResults<TwitterData> twitResults = mongoTemplate.aggregate(twitAggr, "TwitterData", TwitterData.class);
 		List<TwitterData> twitList = twitResults.getMappedResults();
 		//List<TwitterData> twitList = iTwitterDao.findAll();
-		List<UserCount> result = new ArrayList<UserCount>();
+		List<LocationCount> result = new ArrayList<LocationCount>();
 		for (TwitterData t : twitList) {
 			
 			TwitterData twitLatest = iTwitterDao.findOneById_str(t.getId_str());
@@ -166,9 +176,32 @@ public String getTwitcount(String id_str) throws JsonProcessingException {
 		return ow.writeValueAsString(locationCount);	
 	}
 
-	public String getCounter(String id_str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*public String getCounter() {
+		
+		UserCount locationCount = new UserCount();
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		List<UserCount> userCountDO = iUsercountDao.findAll();
+		List<LocationCount> locationCountDO = iLocationCountDao.findAll();
+		List<TwitCount> twitCount = iTwitCountDao.findAll();
+		Aggregation twitAggr = newAggregation(match(Criteria.where("user.location").is(location)));
+		AggregationResults<TwitterData> twitResults = mongoTemplate.aggregate(twitAggr, "TwitterData", TwitterData.class);
+		List<TwitterData> twitList = twitResults.getMappedResults();
+		//List<TwitterData> twitList = iTwitterDao.findAll();
+		List<LocationCount> result = new ArrayList<LocationCount>();
+		for (TwitterData t : twitList) {
+			
+			TwitterData twitLatest = iTwitterDao.findOneById_str(t.getId_str());
+			//locationCount.setId(twitLatest.getUser().getId_str());
+			locationCount.setName(twitLatest.getUser().getLocation());
+			if(twitLatest!=null)
+			{
+				count++;
+			}			
+			locationCount.setCount(count);
+			//result.add(userCount);		
+		}	
+		
+		return ow.writeValueAsString(locationCount);
+	}*/
 
 }
